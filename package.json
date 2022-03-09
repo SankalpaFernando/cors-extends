@@ -1,0 +1,80 @@
+{
+	"name": "cors-extends",
+	"version": "1.0.0",
+	"description": "Configure the Cors Options with Ease",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist/**/*",
+		"README.md"
+	],
+	"scripts": {
+		"test": "dotenv -v ENVIRONMENT=test jest --config jest.config.json",
+		"build": "tsc",
+		"build:dev": " sudo npm link  && cd ./testApp && npm link cors-extended && cd ../",
+		"test:coverage": "dotenv -v ENVIRONMENT=test jest --coverage --coverageReporters='text-summary'",
+		"start:dev": "ts-node-dev ./src/index.ts",
+		"format": "prettier --write \"src/**\"",
+		"lint": "tslint -p tsconfig.json",
+		"lint:fix": "tslint --fix -p tsconfig.json -e src/**",
+		"prepublishOnly": "npm run build",
+		"preversion": "npm run lint && npm run format",
+		"version": "npm run format && git add .",
+		"postversion": "git push && git push --tags"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SankalpaFernando/cors-extends.git"
+	},
+	"bugs": {
+		"url": "https://github.com/SankalpaFernando/cors-extends/issues"
+	},
+	"keywords": [
+		"cors",
+		"environment",
+		"express",
+		"cross",
+		"origin",
+		"resource",
+		"sharing",
+		"proxy",
+		"middleware",
+		"http",
+		"postman",
+		"https",
+		"server"
+	],
+	"author": "Sankalpa Fernando",
+	"license": "MIT",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.17.3",
+		"lodash": "^4.17.21"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/jest": "^27.4.1",
+		"@types/lodash": "^4.14.179",
+		"dotenv": "^16.0.0",
+		"dotenv-cli": "^5.0.0",
+		"jest": "^27.5.1",
+		"lint-staged": "^12.3.5",
+		"pre-commit": "^1.2.2",
+		"prettier": "^2.5.1",
+		"ts-jest": "^27.1.3",
+		"ts-node-dev": "^1.1.8",
+		"tslint": "^6.1.3",
+		"tslint-config-prettier": "^1.18.0",
+		"typescript": "^4.6.2"
+	},
+	"lint-staged": {
+		"src/**": [
+			"npm run format",
+			"npm run lint",
+			"npm run lint:fix",
+			"git add ."
+		]
+	},
+	"pre-commit": "lint-staged -p false"
+}
